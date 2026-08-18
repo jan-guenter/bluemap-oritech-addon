@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "projectLicense": "MIT",
+  "inputs": [
+    {
+      "name": "BlueMap",
+      "version": "5.22-agent.backport-5.22-mc1.21.1-2",
+      "commit": "9be321df995a1103808621d529eb72773e719d4d",
+      "license": "MIT",
+      "lane": "runtime-interface",
+      "bundled": false
+    },
+    {
+      "name": "Oritech",
+      "version": "1.2.10",
+      "filename": "oritech-neoforge-1.21.1-1.2.10.jar",
+      "size": 10990540,
+      "sha256": "7c17c78ac55d9cbb71a9108a2bec7e2659192e08c5a1b49026088f875dbde821",
+      "sourceCommit": "0330e0ebf9f02cb0011ccd45667134ee60127e95",
+      "license": "CC0-1.0",
+      "lane": "adapted-state-and-resources",
+      "bundled": false
+    },
+    {
+      "name": "Athena",
+      "version": "4.0.6",
+      "filename": "athena-neoforge-1.21.1-4.0.6.jar",
+      "size": 99944,
+      "sha256": "43699885bbce3343916d4c5c4940cf0e3f9f6f02fdeb46e8655e121b42282ec5",
+      "license": "MIT",
+      "lane": "resource-format-reference",
+      "bundled": false
+    },
+    {
+      "name": "GeckoLib",
+      "version": "4.9.2",
+      "filename": "geckolib-neoforge-1.21.1-4.9.2.jar",
+      "size": 630584,
+      "sha256": "5e548466af9ab6aca7a91a7c7d4dc0dc8bc385e22958aed5da0e7bebd0fa3fba",
+      "license": "MIT",
+      "lane": "resource-format-reference",
+      "bundled": false
+    }
+  ]
+}
