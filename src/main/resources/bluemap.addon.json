@@ -1,0 +1,6 @@
+{
+  "id": "bluemap-oritech",
+  "entrypoint": "io.github.janguenter.bluemap.oritech.BlueMapOritechAddon",
+  "dependencies": [],
+  "soft-dependencies": []
+}
