@@ -9,6 +9,9 @@ on:
 permissions:
   contents: read
 
+env:
+  PROMOTION_JAVA_VERSION: '21.0.12+8.0.LTS'
+
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -21,6 +24,7 @@ jobs:
       - name: Check out add-on
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          submodules: recursive
           persist-credentials: false
 
       - name: Check out exact BlueMap backport
@@ -30,19 +34,46 @@ jobs:
           ref: 9be321df995a1103808621d529eb72773e719d4d
           path: .ci/bluemap
           submodules: recursive
+          fetch-depth: 0
           persist-credentials: false
 
-      - name: Set up Java 21
+      - name: Verify exact detached BlueMap identities
+        run: |
+          test "$(git -C .ci/bluemap rev-parse --abbrev-ref HEAD)" = "HEAD"
+          test "$(git -C .ci/bluemap rev-parse HEAD)" = \
+            "9be321df995a1103808621d529eb72773e719d4d"
+          test "$(git -C .ci/bluemap/api rev-parse HEAD)" = \
+            "285c9a60eff3ac2b0cab308ce1058d1565be0971"
+
+      - name: Set up exact promotion Java 21
         uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
         with:
           distribution: temurin
-          java-version: '21'
+          java-version: ${{ env.PROMOTION_JAVA_VERSION }}
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.13'
+
+      - name: Install exact BlueMap add-on toolkit
+        run: |
+          python -m pip install --disable-pip-version-check \
+            --no-deps --require-hashes --only-binary=:all: \
+            --requirement requirements/toolkit.txt
+          toolkit_version="$(sed -n \
+            's#^bluemap-addon-toolkit @ .*/releases/download/v\([^/]*\)/.*#\1#p' \
+            requirements/toolkit.txt)"
+          [[ "${toolkit_version}" =~ ^[0-9A-Za-z][0-9A-Za-z.+-]*$ ]]
+          test "$(bluemap-addon-toolkit --version)" = "${toolkit_version}"
 
       - name: Set up Gradle 9.6.1
         uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
         with:
           gradle-version: '9.6.1'
+          cache-provider: basic
           cache-read-only: ${{ github.event_name == 'pull_request' }}
+          validate-wrappers: true
 
       - name: Validate provenance and accepted artifact
         run: |
