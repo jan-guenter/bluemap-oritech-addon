@@ -54,7 +54,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: jan-guenter/BlueMap
-          ref: 9be321df995a1103808621d529eb72773e719d4d
+          ref: 7e07f4e74ec1e92a6ead9aa1e66054af3e133aac
           path: .ci/bluemap
           submodules: recursive
           fetch-depth: 0
@@ -64,12 +64,9 @@ jobs:
         run: |
           test "$(git -C .ci/bluemap rev-parse --abbrev-ref HEAD)" = "HEAD"
           test "$(git -C .ci/bluemap rev-parse HEAD)" = \
-            "9be321df995a1103808621d529eb72773e719d4d"
+            "7e07f4e74ec1e92a6ead9aa1e66054af3e133aac"
           test "$(git -C .ci/bluemap/api rev-parse HEAD)" = \
             "285c9a60eff3ac2b0cab308ce1058d1565be0971"
-          git -C .ci/bluemap fetch --force --tags origin
-          test "$(git -C .ci/bluemap describe --exact-match --tags HEAD)" = \
-            "v5.22-agent.backport-5.22-mc1.21.1-2"
 
       - name: Set up exact promotion Java 21
         uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
@@ -102,26 +99,28 @@ jobs:
           cache-read-only: true
           validate-wrappers: true
 
+      - name: Acquire exact ephemeral Oritech input
+        run: |
+          input_dir="${RUNNER_TEMP}/exact-inputs"
+          mkdir -p "${input_dir}"
+          curl --fail --location --retry 3 --retry-all-errors \
+            --output "${input_dir}/oritech-neoforge-1.21.1-1.2.10.jar" \
+            "https://www.curseforge.com/api/v1/mods/1030830/files/8556549/download"
+          test "$(stat -c %s "${input_dir}/oritech-neoforge-1.21.1-1.2.10.jar")" \
+            -eq 10990540
+          sha256sum --check <<SHA256SUMS
+          7c17c78ac55d9cbb71a9108a2bec7e2659192e08c5a1b49026088f875dbde821  ${input_dir}/oritech-neoforge-1.21.1-1.2.10.jar
+          SHA256SUMS
+
       - name: Build and verify accepted bytes
         run: |
-          python3 -m json.tool provenance/upstreams.json >/dev/null
+          input_dir="${RUNNER_TEMP}/exact-inputs"
           gradle --no-daemon \
             -PbluemapSourcePath=.ci/bluemap \
-            clean check build generatePomFileForAddonPublication \
-            generateMetadataFileForAddonPublication
-          test "$(stat -c %s \
-            "build/libs/bluemap-oritech-addon-${VERSION}-sources.jar")" \
-            -eq 23988
-          test "$(stat -c %s build/publications/addon/pom-default.xml)" \
-            -eq 1341
-          test "$(stat -c %s build/publications/addon/module.json)" \
-            -eq 2817
-          sha256sum --check <<SHA256SUMS
-          958ae6fa2ae5a17893cccc348d3a6ce90498ff16ded21a97b0575774b7698a8e  build/libs/bluemap-oritech-addon-${VERSION}.jar
-          d8b3a391430a1a52d8efff61fec7b80d03449d4daf455c56ab28a474b6610858  build/libs/bluemap-oritech-addon-${VERSION}-sources.jar
-          3329db0d084ac41b8ed858bce552e9ef67591bfb4dfa0c567267c734585a8552  build/publications/addon/pom-default.xml
-          e768b4ec4bacdde766c1e35b322aad8003c5bf8bcd78a88a814cd6b38dfde147  build/publications/addon/module.json
-          SHA256SUMS
+            -PoritechJar="${input_dir}/oritech-neoforge-1.21.1-1.2.10.jar" \
+            "-PreleaseTag=${RELEASE_TAG}" \
+            clean build generatePomFileForAddonPublication \
+            generateMetadataFileForAddonPublication verifyReleaseCandidate
 
       - name: Prepare release bundle
         run: |
@@ -134,9 +133,6 @@ jobs:
             "release/bluemap-oritech-addon-${VERSION}.module.json"
           (cd release && sha256sum -- ./* > SHA256SUMS)
           (cd release && sha256sum --check SHA256SUMS)
-          test "$(stat -c %s release/SHA256SUMS)" -eq 448
-          test "$(sha256sum release/SHA256SUMS | cut -d ' ' -f 1)" = \
-            f758d0a4f1b2780b6dd7d22d61074f888a6b444b3f827365b04480818a2b00a8
 
       - name: Create or refresh draft release
         env:
@@ -167,6 +163,7 @@ jobs:
         run: |
           gradle --no-daemon \
             -PbluemapSourcePath=.ci/bluemap \
+            -PoritechJar="${RUNNER_TEMP}/exact-inputs/oritech-neoforge-1.21.1-1.2.10.jar" \
             publishAddonPublicationToGitHubPackagesRepository
 
       - name: Verify and publish GitHub release

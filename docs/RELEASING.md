@@ -7,7 +7,8 @@ install the exact development-only toolkit into a Python 3.11 or newer
 environment:
 
 ```bash
-git submodule update --init --recursive -- tooling/bluemap-addon-toolkit
+git submodule update --init --recursive -- \
+  tooling/bluemap-addon-toolkit modules/bluemap-addon-adapter-api
 python -m pip install --disable-pip-version-check --no-deps \
   --require-hashes --only-binary=:all: \
   --requirement requirements/toolkit.txt
@@ -18,8 +19,8 @@ The requirement locks the 20,585-byte `v0.3.0-alpha.1` wheel at SHA-256
 
 1. Confirm the exact All the Mons, Minecraft, NeoForge, Java, BlueMap, and
    candidate-mod identities documented by this repository.
-2. Run the repository's complete `check` and build gates with every required
-   exact artifact property.
+2. Run the repository's complete `prototypeCheck` and publication gates with
+   `-PbluemapSourcePath` and the exact `-PoritechJar` artifact property.
 3. Verify the production and sources JAR boundaries, licenses, notices, and
    provenance. Do not bundle candidate-mod binaries, resources, source,
    galleries, worlds, logs, or credentials.

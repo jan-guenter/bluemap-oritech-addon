@@ -4,7 +4,7 @@
  * Small first-party adaptation of the accepted Athena CTM quadrant interpreter
  * used by the BlueMap Chisel add-on in this workspace.
  */
-package io.github.janguenter.bluemap.oritech.adapter.bluemap522;
+package io.github.janguenter.bluemap.oritech.adapter.bluemap523;
 
 import de.bluecolored.bluemap.core.map.TextureGallery;
 import de.bluecolored.bluemap.core.map.hires.RenderSettings;
