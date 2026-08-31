@@ -1,33 +1,32 @@
 {
   "schema_version": 1,
-  "status": "unpublished-migration-candidate",
+  "status": "owner-accepted-release-candidate",
   "published": false,
-  "owner_acceptance": "required",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-alpha.3",
   "release_date": "2026-08-31",
   "repository": "https://github.com/jan-guenter/bluemap-oritech-addon",
-  "tag": "v0.1.0-alpha.2",
-  "maven_coordinate": "io.github.jan-guenter:bluemap-oritech-addon:0.1.0-alpha.2",
+  "tag": "v0.1.0-alpha.3",
+  "maven_coordinate": "io.github.jan-guenter:bluemap-oritech-addon:0.1.0-alpha.3",
   "candidate_artifacts": {
     "production_jar": {
-      "file_name": "bluemap-oritech-addon-0.1.0-alpha.2.jar",
+      "file_name": "bluemap-oritech-addon-0.1.0-alpha.3.jar",
       "size": 140381,
-      "sha256": "cd6daab0bf45ac6940b8d3b333fdbedad70c29c8cb92e88064cdee9ecbc56342"
+      "sha256": "c174fde6e21915039e547e5058f035993529b3cf3b6bd627ee6110be72c03751"
     },
     "sources_jar": {
-      "file_name": "bluemap-oritech-addon-0.1.0-alpha.2-sources.jar",
+      "file_name": "bluemap-oritech-addon-0.1.0-alpha.3-sources.jar",
       "size": 83612,
       "sha256": "c041bfbb5d5bec09aac894787ed2cb368c75346ee3995c6b1041b5b64f1e3319"
     },
     "pom": {
-      "file_name": "bluemap-oritech-addon-0.1.0-alpha.2.pom",
+      "file_name": "bluemap-oritech-addon-0.1.0-alpha.3.pom",
       "size": 1341,
-      "sha256": "adf2ee3928d51f6a79fefcd720577fabe6972968fcfdda44c33615c194021ad3"
+      "sha256": "51518286b2359cd6b6300ba4716604637cfa06f653b0c042bb9f786b2eae42ae"
     },
     "gradle_module": {
-      "file_name": "bluemap-oritech-addon-0.1.0-alpha.2.module.json",
+      "file_name": "bluemap-oritech-addon-0.1.0-alpha.3.module.json",
       "size": 2819,
-      "sha256": "282d126ebda81ff8c8ff6775366b3d831a734ca487ec4455bbfde03245dbafea"
+      "sha256": "6609325994b29fadecf63f256d40e1ea27ddfa63dbcf9a1cdafd925081edeb02"
     }
   },
   "baseline_release": {
@@ -78,6 +77,109 @@
     "consumer_tests_passed": 2,
     "gallery_integrity": true,
     "checkstyle": true,
-    "actionlint": true
+    "actionlint": true,
+    "release_candidate_gate": true,
+    "aggregate_runtime_suite": true,
+    "runtime_payload_equivalence": true
+  },
+  "failed_release_attempt": {
+    "version": "0.1.0-alpha.2",
+    "tag": "v0.1.0-alpha.2",
+    "tag_object": "0aa2f94cdb3804f24761e9d81003d7d94d181226",
+    "tag_target_commit": "3440a35ec88b8f94c2d5a3fe3f182c8391544d5c",
+    "workflow_run": "https://github.com/jan-guenter/bluemap-oritech-addon/actions/runs/33415812453",
+    "conclusion": "failure",
+    "failed_gate": "verifyAcceptedSourcesJar",
+    "github_release_created": false,
+    "publication_steps_reached": false,
+    "tag_preserved_immutable": true
+  },
+  "owner_accepted_staging": {
+    "visual_acceptance": true,
+    "accepted_on": "2026-08-31",
+    "scope": "Owner accepted the five-add-on aggregate batch containing the Oritech 0.1.0-alpha.2 renderer candidate.",
+    "integration_run": "bluemap-atmons-integration-20260831-tech-batch-523-native",
+    "candidate": {
+      "source_commit": "638259554a4114ab66569a5aecb581b30a5037e2",
+      "file_name": "bluemap-oritech-addon-0.1.0-alpha.2.jar",
+      "size": 140381,
+      "sha256": "cd6daab0bf45ac6940b8d3b333fdbedad70c29c8cb92e88064cdee9ecbc56342",
+      "manifest_sha256": "8eb752e176fcf455d5d31932c15722b810071068885abc42fd2791208de3a577",
+      "override_lock_sha256": "1d080d8d38d490b0bbff9c647e9df2107db7f6f69d67fcdd0ffca60d6beb53b3"
+    },
+    "runtime_suite": {
+      "file_name": "runtime-suite-next-five.json",
+      "sha256": "b150f1902c852c8d14aff6e2c9b75e208c86e02609daab891cb7c0e00ac90efb",
+      "finished_at": "2026-08-31T16:09:45.587520Z",
+      "status": "passed",
+      "gallery_count": 51,
+      "passed": 51,
+      "failed": 0,
+      "candidate_pack_inventory_sha256": "d0b4ea6b84f4d0fb968261194f5fb66424a7e371e5d21ee3e79a164246d3efe5",
+      "runtime_attestation_sha256": "d7f25218206aacb36840a67b3ab34709509cdbde5d6822c6106236245d621498",
+      "oritech_verification": {
+        "status": "passed",
+        "mirrored_checks": 3,
+        "pre_verification_failures": 0,
+        "failures": 0
+      }
+    },
+    "gallery_render": {
+      "file_name": "gallery-render-next-five.json",
+      "file_sha256": "070a39c8c9afd4261d7ed92eb05949d10dbefd2b518185aa1edf637c4a91901e",
+      "map_id": "atmons_integration",
+      "composition_id": "4c1139e67bee1f570824ac90bdc12a4331381946acf4cd593609c51c3a4c894a",
+      "layout_sha256": "5ea9a96c5e5b159057441a6eb6fbfdbf47aa06b95dadfcb2756246b117a04944",
+      "fresh_tile_evidence_sha256": "8d20c87b78978c976ad662b686535442a90e066fd3b9388aaf46ef3ccd9d3867",
+      "region_count": 4,
+      "tile_count": 589
+    },
+    "browser_capture": {
+      "file_name": "oritech.png",
+      "screenshot_sha256": "7580ef5ef70a6902fb1367094b9ed6a163b7c44d8a6f230d8d1be507da45b58d",
+      "navigation_status": 200
+    }
+  },
+  "alpha2_to_alpha3_runtime_equivalence": {
+    "method": "SHA-256 comparison of every ZIP entry, excluding only META-INF/MANIFEST.MF",
+    "alpha2_production_jar": {
+      "size": 140381,
+      "sha256": "cd6daab0bf45ac6940b8d3b333fdbedad70c29c8cb92e88064cdee9ecbc56342"
+    },
+    "alpha3_production_jar": {
+      "size": 140381,
+      "sha256": "c174fde6e21915039e547e5058f035993529b3cf3b6bd627ee6110be72c03751"
+    },
+    "entry_count": 40,
+    "compared_non_manifest_entries": 39,
+    "class_count": 34,
+    "class_entry_hashes_equal": true,
+    "non_manifest_payload_sha256": "fa43efcf19e3f1c5fc539bdf4c5fe74405c6305a9c79662b105928714fe4b28a",
+    "only_changed_entry": "META-INF/MANIFEST.MF",
+    "only_changed_value": "Implementation-Version",
+    "sources_jars_byte_identical": true,
+    "sources_jar_sha256": "c041bfbb5d5bec09aac894787ed2cb368c75346ee3995c6b1041b5b64f1e3319"
+  },
+  "final_release_artifacts": {
+    "production_jar": {
+      "file_name": "bluemap-oritech-addon-0.1.0-alpha.3.jar",
+      "size": 140381,
+      "sha256": "c174fde6e21915039e547e5058f035993529b3cf3b6bd627ee6110be72c03751"
+    },
+    "sources_jar": {
+      "file_name": "bluemap-oritech-addon-0.1.0-alpha.3-sources.jar",
+      "size": 83612,
+      "sha256": "c041bfbb5d5bec09aac894787ed2cb368c75346ee3995c6b1041b5b64f1e3319"
+    },
+    "pom": {
+      "file_name": "bluemap-oritech-addon-0.1.0-alpha.3.pom",
+      "size": 1341,
+      "sha256": "51518286b2359cd6b6300ba4716604637cfa06f653b0c042bb9f786b2eae42ae"
+    },
+    "gradle_module": {
+      "file_name": "bluemap-oritech-addon-0.1.0-alpha.3.module.json",
+      "size": 2819,
+      "sha256": "6609325994b29fadecf63f256d40e1ea27ddfa63dbcf9a1cdafd925081edeb02"
+    }
   }
 }
