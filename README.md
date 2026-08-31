@@ -2,14 +2,13 @@
 
 [![CI](https://github.com/jan-guenter/bluemap-oritech-addon/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/jan-guenter/bluemap-oritech-addon/actions/workflows/ci.yml)
 
-A small exact-profile BlueMap 5.22 add-on for the stable block appearance
+A small exact-profile BlueMap 5.23 feature-backport add-on for stable block appearance
 missing from Oritech 1.2.10 in All the Mons 1.2.0.
 
 ## Status and compatibility
 
-Version `0.1.0-alpha.1` is the owner-accepted prerelease for this exact
-environment. Its production JAR is 64,472 bytes with SHA-256
-`958ae6fa2ae5a17893cccc348d3a6ce90498ff16ded21a97b0575774b7698a8e`.
+Version `0.1.0-alpha.2` is an unpublished migration candidate for this exact
+environment. It preserves the owner-accepted `0.1.0-alpha.1` rendering scope.
 Compatibility outside these inputs is not asserted.
 
 ## Visual scope
@@ -17,8 +16,10 @@ Compatibility outside these inputs is not asserted.
 The add-on targets only:
 
 - All the Mons `1.2.0`, Minecraft `1.21.1`, NeoForge `21.1.248`, Java 21;
-- BlueMap backport `5.22-agent.backport-5.22-mc1.21.1-2` at commit
-  `9be321df995a1103808621d529eb72773e719d4d`;
+- BlueMap feature backport
+  `5.22-feature.backport-5.23-stateless-java-web-server-46` at commit
+  `7e07f4e74ec1e92a6ead9aa1e66054af3e133aac` and API commit
+  `285c9a60eff3ac2b0cab308ce1058d1565be0971`;
 - Oritech `1.2.10`, exact 10,990,540-byte JAR with SHA-256
   `7c17c78ac55d9cbb71a9108a2bec7e2659192e08c5a1b49026088f875dbde821`.
 
@@ -34,26 +35,31 @@ BlueMap rendering unchanged. The add-on writes nothing to the world.
 
 ## Build and verification
 
-Clone with `--recurse-submodules`, or initialize an existing checkout with
-`git submodule update --init --recursive -- tooling/bluemap-addon-toolkit`.
-The settings preflight accepts only the committed toolkit gitlink at commit
-`6cd34a8368cc4ee8628fbe830a90ec5b14960629` and rejects an uninitialized,
-changed, or dirty toolkit checkout.
+Clone with `--recurse-submodules`, or initialize the two pinned support
+modules in an existing checkout:
 
 ```bash
-gradle --no-daemon clean check build \
+git submodule update --init --recursive -- \
+  tooling/bluemap-addon-toolkit modules/bluemap-addon-adapter-api
+gradle --no-daemon \
+  -PbluemapSourcePath=/path/to/exact/bluemap \
+  -PoritechJar=/path/to/oritech-neoforge-1.21.1-1.2.10.jar \
+  clean prototypeCheck build \
   generatePomFileForAddonPublication \
   generateMetadataFileForAddonPublication
 ```
 
-`check` rejects any production JAR that differs from the owner-accepted size
-or SHA-256. Tagged releases publish production/source JARs, POM, Gradle module
-metadata, and checksums on GitHub Releases and Maven coordinates
+The settings preflight accepts only the committed support gitlinks and exact
+BlueMap source identities. `prototypeCheck` verifies the exact installed
+Oritech artifact, adapter boundary, archive boundaries, tests, and gallery.
+
+Tagged releases publish production/source JARs, POM, Gradle module metadata,
+and checksums on GitHub Releases and Maven coordinates
 `io.github.jan-guenter:bluemap-oritech-addon:<version>` on GitHub Packages.
 
 ## Installation
 
-Place `bluemap-oritech-addon-0.1.0-alpha.1.jar` in `config/bluemap/packs`,
+Place `bluemap-oritech-addon-0.1.0-alpha.2.jar` in `config/bluemap/packs`,
 make the exact Oritech JAR available to BlueMap's resource scan, restart, and
 rerender the affected area. Do not place this add-on in `mods`.
 

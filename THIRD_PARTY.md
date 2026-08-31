@@ -4,7 +4,7 @@
   `0330e0ebf9f02cb0011ccd45667134ee60127e95`, is licensed CC0-1.0.
 - Athena 4.0.6 and GeckoLib 4.9.2 identify their distributed artifacts as
   MIT licensed.
-- BlueMap 5.22 is licensed MIT.
+- BlueMap and BlueMap Add-on Adapter API are licensed MIT.
 
 No Oritech, Athena, or GeckoLib textures, models, source, or binaries are
 bundled. BlueMap resolves Oritech resources from the installed exact JAR.

@@ -1,45 +1,53 @@
 {
-  "schema": 1,
-  "projectLicense": "MIT",
-  "inputs": [
+  "artifacts": [
     {
-      "name": "BlueMap",
-      "version": "5.22-agent.backport-5.22-mc1.21.1-2",
-      "commit": "9be321df995a1103808621d529eb72773e719d4d",
-      "license": "MIT",
-      "lane": "runtime-interface",
-      "bundled": false
-    },
-    {
-      "name": "Oritech",
-      "version": "1.2.10",
-      "filename": "oritech-neoforge-1.21.1-1.2.10.jar",
-      "size": 10990540,
-      "sha256": "7c17c78ac55d9cbb71a9108a2bec7e2659192e08c5a1b49026088f875dbde821",
-      "sourceCommit": "0330e0ebf9f02cb0011ccd45667134ee60127e95",
+      "curseforge_file": 8556549,
+      "curseforge_project": 1030830,
+      "download_url": "https://www.curseforge.com/api/v1/mods/1030830/files/8556549/download",
+      "evidence": "All the Mons 1.2.0 exact server archive and CurseForge file metadata identify the same Oritech 1.2.10 artifact",
+      "evidence_tier": "T2_ARTIFACT_EXACT",
+      "file_name": "oritech-neoforge-1.21.1-1.2.10.jar",
+      "key": "oritech",
       "license": "CC0-1.0",
-      "lane": "adapted-state-and-resources",
-      "bundled": false
-    },
-    {
-      "name": "Athena",
-      "version": "4.0.6",
-      "filename": "athena-neoforge-1.21.1-4.0.6.jar",
-      "size": 99944,
-      "sha256": "43699885bbce3343916d4c5c4940cf0e3f9f6f02fdeb46e8655e121b42282ec5",
-      "license": "MIT",
-      "lane": "resource-format-reference",
-      "bundled": false
-    },
-    {
-      "name": "GeckoLib",
-      "version": "4.9.2",
-      "filename": "geckolib-neoforge-1.21.1-4.9.2.jar",
-      "size": 630584,
-      "sha256": "5e548466af9ab6aca7a91a7c7d4dc0dc8bc385e22958aed5da0e7bebd0fa3fba",
-      "license": "MIT",
-      "lane": "resource-format-reference",
-      "bundled": false
+      "mod_id": "oritech",
+      "redistributed": false,
+      "sha1": "659da039dea86aab119039e0e724cfc354b4ede2",
+      "sha256": "7c17c78ac55d9cbb71a9108a2bec7e2659192e08c5a1b49026088f875dbde821",
+      "size": 10990540,
+      "source_commit": "0330e0ebf9f02cb0011ccd45667134ee60127e95",
+      "version": "1.2.10"
     }
-  ]
+  ],
+  "bluemap": {
+    "api_commit": "285c9a60eff3ac2b0cab308ce1058d1565be0971",
+    "commit": "7e07f4e74ec1e92a6ead9aa1e66054af3e133aac",
+    "license": "MIT",
+    "redistributed": false,
+    "tested_jar_sha256": "86a0323d24f472e425dda4d4e6bba2d7d8ce8315ad009930a67131128c715e62",
+    "tested_jar_size": 6545661,
+    "version": "5.22-feature.backport-5.23-stateless-java-web-server-46"
+  },
+  "pack": {
+    "commit": "c7bb230f21d14d26859d0b92548f089b3a493ad9",
+    "minecraft": "1.21.1",
+    "name": "All the Mons",
+    "neoforge": "21.1.248",
+    "version": "1.2.0"
+  },
+  "profile": "oritech-1.2.10-mc1.21.1",
+  "schema": 1,
+  "shared_adapter_api_module": {
+    "artifact_bundled": false,
+    "commit": "e81f08bc4bfbf02d810ec8949a019130e2e61634",
+    "declared_license": "MIT",
+    "integration": "exact gitlink-pinned sources compiled into the consumer",
+    "project": "BlueMap Add-on Adapter API",
+    "repository": "https://github.com/jan-guenter/bluemap-addon-adapter-api",
+    "scope": "BlueMapRuntimeCompatibility, RegistryGuard, ResourceExtensionType and SyntheticDispatch",
+    "source_tree": "2f974c9bb2ba13888d69682f86f30f58922d30eb",
+    "status": "released",
+    "tag": "v0.1.0-alpha.2",
+    "version": "0.1.0-alpha.2"
+  },
+  "source_use": "The add-on interprets operator-installed Oritech GEO and texture resources. It packages no Oritech, Athena, GeckoLib, or BlueMap binary, class, asset, source, world, or captured mesh."
 }
