@@ -16,7 +16,7 @@ portfolio. Read this file and `README.md` before changing it.
 - Adapter API `0.1.0-alpha.2`, commit
   `e81f08bc4bfbf02d810ec8949a019130e2e61634`, source tree
   `2f974c9bb2ba13888d69682f86f30f58922d30eb`
-- Add-on ID `bluemap-oritech`, version `0.1.0-alpha.2`
+- Add-on ID `bluemap-oritech`, version `0.1.0-alpha.3`
 
 This is a standalone BlueMap add-on, not a NeoForge mod. Do not add client
 classes, candidate binaries or assets, nested JARs, Minecraft classes, Mixins,

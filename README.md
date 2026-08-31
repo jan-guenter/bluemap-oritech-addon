@@ -7,9 +7,10 @@ missing from Oritech 1.2.10 in All the Mons 1.2.0.
 
 ## Status and compatibility
 
-Version `0.1.0-alpha.2` is an unpublished migration candidate for this exact
-environment. It preserves the owner-accepted `0.1.0-alpha.1` rendering scope.
-Compatibility outside these inputs is not asserted.
+Version `0.1.0-alpha.3` is the owner-accepted migration release candidate for
+this exact environment. It preserves the accepted `0.1.0-alpha.2` renderer
+payload; `v0.1.0-alpha.2` is an unpublished failed release tag whose metadata
+was not sealed. Compatibility outside these inputs is not asserted.
 
 ## Visual scope
 
@@ -59,7 +60,7 @@ and checksums on GitHub Releases and Maven coordinates
 
 ## Installation
 
-Place `bluemap-oritech-addon-0.1.0-alpha.2.jar` in `config/bluemap/packs`,
+Place `bluemap-oritech-addon-0.1.0-alpha.3.jar` in `config/bluemap/packs`,
 make the exact Oritech JAR available to BlueMap's resource scan, restart, and
 rerender the affected area. Do not place this add-on in `mods`.
 

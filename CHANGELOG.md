@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.3 - 2026-08-31
+
+- Seal the owner-accepted aggregate runtime and visual-review evidence.
+- Preserve every renderer class and non-versioned runtime resource from the
+  accepted `0.1.0-alpha.2` candidate.
+- Supersede the unpublished failed `v0.1.0-alpha.2` release tag, whose release
+  gate correctly rejected unsealed metadata before publishing any artifacts.
+
 ## 0.1.0-alpha.2 - 2026-08-31
 
 - Target only BlueMap feature-backport commit
